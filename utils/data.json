@@ -1,0 +1,397 @@
+[
+    {
+      "question": "1- Un proceso accesible en la Internet (por ejemplo un web server) puede ser accedido conociendo la dirección IP del equipo donde se está ejecutando y el socket al que está conectado en ese equipo",
+      "answer": "Falso, no es necesario conocer la dirección privada del equipo (tampoco es deseable), ni el socket al que está conectado. Podemos acceder únicamente con una dirección IP, o mejor aún con una DNS."
+    },
+    {
+      "question": "**2- El ISP debe ser el propietario de la red de acceso del usuario al PoP (punto de presencia)",
+      "answer": "Verdadero, Un punto de presencia es un lugar físico que está ubicado en una región geográfica determinada, y que es propiedad de un ISP. Ese ISP puede ser muy grande o muy chico. Los PoPs permiten a los usuarios conectarse a internet. Por lo general incluyen servidores (como un servidor DNS), routers, switches y otro tipo de equipamiento de red, todo lo que venga de rlos usuarios va a pasar por esta red,  posiblemente utilizar un servicio de alguno de los servidores del PoP"
+    },
+    {
+      "question": "**3- El MTU ofrecido por IP, depende de la tecnología utilizada a nivel link layer (Ethernet, etc)",
+      "answer": "Verdadero, La MTU, o ‘Maximum Transmission Unit’ es el tamaño máximo de paquete permitido por el nivel 2. Por ejemplo, en Ethernet es típicamente 1500 bytes."
+    },
+    {
+      "question": "*4- Traceroute permite determinar el camino seguido por los datagrams desde el emisor del traceroute al destino y desde el destino al emisor, usando destination unreachable de ICMP",
+      "answer": "Falsa. traceroute permite determinar el camino desde el emisor hasta el receptor, pero esto no implica que el camino desde el receptor hasta el emisor sea el mismo, esto depende de las tablas de ruteo intermedias. Además: destination unreacheble es utilizado solo al final al del camino.. o sea al llegar a la red de destino y querer entrar por un puerto que no existe. En el intermedio se utilizan los paquetes “time exceded” para identificar los nodos correspondientes. El traceroute utiliza el campo TTL del datagram IP, y time exceeded de ICMP. Comienza enviando 3 frames con ttl=1, dichos frames llegarán al próximo router el cual enviará el frame de time exceded. Luego el origen enviará otros tres frames con ttl=2 y se repetirá el proceso hasta llegar al destinatario o hasta que ocurra algún error."
+    },
+    {
+      "question": "5- IP debe chequear la redundancia y regenerarla (incrementalmente) en cada router intermedio debido al cambio en el valor del campo TTL. ICMP solo debe chequearla en cada router intermedio, ya que al no variar su contenido, no necesita regenerarla.",
+      "answer": "es verdad que ICMP no necesitaria de regenerarla, puesto que no cambian los datos de dicho paquete. en IP seria costoso si se generara de nuevo el checksum por cada paquete que pase por un router, por lo que se hace el cálculo incremental. La fórmula es la siguiente: HC’=~(~HC +~m+m’) Donde HC es el checksum, HC’ el nuevo checksum,  ‘m’ es el campo que fue modificado,  m’  es el nuevo campo. \t\t\t\t\t\t\t~ es el complemento."
+    },
+    {
+      "question": "****6- Una dirección IP classful, permite determinar la red a la que pertenece el equipo, y su identificación de host",
+      "answer": "Verdadera, ya que con direcciones classful es sencillo ver cuantos bits se destinan para la red ... una vez tenemos esta delimitacion dada por la clase(A,B,C,..), la parte izquirda será la red de la dirección dada, y la parte derecha es la identificacion del host."
+    },
+    {
+      "question": "*7- Las reglas de netfilter se agrupan en tablas de acuerdo a su funcionalidad",
+      "answer": "Falso, Las reglas se agrupan en listas ordenadas de reglas, llamadas cadenas y a su vez las cadenas se agrupan en tablas. Estas cadenas son: INPUT, FORWARD OUTPUT PREROUTING, POSTROUTING. y las tablas son : NAT, FILTER, MANGLE y RAW"
+    },
+    {
+      "question": "**8- La eficiencia en el uso del canal (información útil enviada por unidad de tiempo) puede ser aumentada por retransmisión con permisos al fin de la ventana respecto a la obtenida por parada y espera. Este aumento es directamente proporcional a la velocidad de transmisión del canal",
+      "answer": "Falso, el aumento es directamente proporcional al tamaño de la ventana"
+    },
+    {
+      "question": "**9- En un mecanismo de parada y espera, el tiempo máximo que debe esperar el emisor para transmitir un bloque de datos (calculado desde el momento en que termina de transmitir el bloque de datos) del que no recibio el ACK, es dos demoras de propagación más el tiempo de transmisión del ACK",
+      "answer": "VERDADERO. Considerando que el tiempo de transmisión del bloque no incluye la demora de propagación, el tiempo máximo que se deberá esperar para volver a transmitir es la dp del emisor + la dp del receptor + el tiempo de transmisión de la confirmación"
+    },
+    {
+      "question": "**10- La delimitación de frame por violacion de código permite que no se utilice mecanismo de transparencia",
+      "answer": "Verdadero. ya que se advierte la delimitacion de frames dividiendo señales altas (o bajas) que indican que empieza o termina de transmitir un frame. Con este metodo, no hay una secuencia de delimitacion ni nada que se pueda confundir en los datos. Por lo cual resulta innecesario utilizar un mecanismo de transparencia."
+    },
+    {
+      "question": "*11- En los frames Ethernet, la dirección MAC de destino se coloca como primer campo del frame (luego del preámbulo) para que sea procesado más eficientemente por ARP",
+      "answer": "Verdadero. Ya que para enviar un datagram IP debo conocer la MAC de destino, y lo que hace ARP es enviar frames ethernet de tipo ARP en broadcast preguntando por dicha MAC asociada a la IP destino. La máquina que recibe dicho frame y cuya MAC es la asociada a la IP destino, responde con un ARP reply y su MAC. La consulta de las MAC es eficiente ya que no deben analizar todo el frame enviado, sino que sólo se fijan en el campo de dirección destino"
+    },
+    {
+      "question": "**12- El dominio broadcast de una red Ethernet, involucra a las placas Ethernet de todos los equipos conectados a la red",
+      "answer": "VERDADERO. El dominio broadcast de una red ethernet abarca todos los equipos de la red, por esto es deseable limitarlo, para no sobrecargar la red."
+    },
+    {
+      "question": "13- MAC control se aplica sólo entre un switch y una placa ethernet",
+      "answer": "FALSO. MAC control puede aplicarse entre switches, entre placas ethernet o entre una placa y un switch"
+    },
+    {
+      "question": "14- MAC control se aplica solo entre switches",
+      "answer": "FALSO. MAC control puede aplicarse entre switches, entre placas ethernet o entre una placa y un switch"
+    },
+    {
+      "question": "15- El mecanismo RTS/CTS en las redes 802.11 evita que haya colisiones",
+      "answer": "Falso. Este mecanismo no evita las colisiones. Si quiero enviar un frame corto, directamente se envía y se corre el riesgo de colusión. Pero si quiero enviar un frame largo, primero se envían frames (cortos) RTS/CTS para ‘reservar’ tiempo de uso de canal. Si los RTS/CTS no colisionan, entonces puedo estar seguro de que tengo tiempo para transmitir el frame largo sin que otros transmitan y me choquen, entonces se transmite el frame largo. El umbral a partir del cual un frame se considera ‘largo’ es configurable."
+    },
+    {
+      "question": "16-Un proceso accesible en la Internet (por ejemplo un web server) puede ser accedido conociendo la dirección IP del equipo donde se está ejecutando",
+      "answer": "FALSO. Un proceso accesible en la internet puede ser accedido conociendo la IP, el puerto y el protocolo del servidor al que me quiero conectar"
+    },
+    {
+      "question": "16 Un valor 100 (decimal) en el campo offset de un datagram IP significa que los datos que transporta ese datagram comienzan en el lugar 100 del datagram original que fue fragmentado.",
+      "answer": "FALSO, si bien el campo offset en un datagram IP se refiere a la posición del fragmento actual en relación con el comienzo del datagrama original, éste no es el número exacto en donde arranca, ya que el valor del offset se especifica en múltiplos de 8 bytes. Por lo tanto, para este ejemplo el fragmento comenzaría en el byte 800 (100x8)."
+    },
+    {
+      "question": "17 La ejecución del utilitario ifconfig define una red de alcance local al equipo donde se lo ejecuta.",
+      "answer": "FALSO, se utiliza para configurar la tabla de reenvíos asignando las interfaces en un router a determinadas subredes."
+    },
+    {
+      "question": "19) IPTables no permite seleccionar datagrams IP en función de su dirección de origen.",
+      "answer": "FALSO, iptables puede, por ejemplo, desechar un paquete en forward de un datagram IP por su dirección orígen. Para esto se utiliza el comando “-s”."
+    },
+    {
+      "question": "24) Una misma dirección IP (classless) puede ser interpretada de diferente manera (referido a cuál es la parte de red y cual la parte de host) por dos routers distintos.",
+      "answer": "FALSO, las direcciones classless poseen una máscara de red, la cual permite saber qué bits pertenecen a la parte de red y a la parte de host. Si dos routers distintos tienen la misma IP con la misma máscara, interpretaran la IP de igual manera."
+    },
+    {
+      "question": "17-En una arquitectura de niveles, es de igual importancia (para el desarrollo de aplicaciones compatibles) conocer la especificación de las interfaces entre niveles que la especificación de los protocolos para cada nivel",
+      "answer": "Verdadero. Como la arquitectura de niveles indica la funcionalidad de los protocolos en cada interfaz, si se conoce el nivel de arquitectura (sea modelo OSI o TCP/IP) se conocerán también los protocolos que cumplen las funciones indicadas en cada interfaz."
+    },
+    {
+      "question": "18-En las redes que usan tecnología Circuit Switching, cada paquete de datos sigue un camino de nodos establecido al iniciar la conexión ",
+      "answer": "Verdadero. El Circuit Switching implica tres fases: el establecimiento del circuito, la transferencia de datos y la desconexión del circuito. Una vez que el camino entre el origen y el destino queda fijado, queda reservado un ancho de banda fijo hasta que la comunicación se termine. Para comunicarse con otro destino, el origen debe primero finalizar la conexión establecida"
+    },
+    {
+      "question": "19-Cuando un equipo recibe un datagram, determina si se trata de un fragmento o de un datagram completo, en base a los campos del datagram IP: offset y flag de último fragmento",
+      "answer": "Verdadero, porque con el offset en 0 y el flag de ultimo fragmento en 1 se puede determinar si es un datagram completo, en cualquier otro caso es un fragmento. Si el offset es distinto de 0 y el flag es 1, es el ultimo fragmento, si el flag es 0, es un fragmento del “medio”"
+    },
+    {
+      "question": "63) Cuando un switch ethernet recibe un mensaje a un destino que no tiene en su tabla de ruteo, reenvía el mensaje por todos los puertos del switch.",
+      "answer": "VERDADERO, cuando esto sucede, el switch envía un paquete broadcast a cada puerto, menos al de entrada, con la dirección MAC desconocida y su propia MAC. Si se obtiene una respuesta (el destino está en la red), actualiza la tabla de ruteo con la MAC y el puerto. De lo contrario se considera destino inalcanzable y se descarta el mensaje."
+    },
+    {
+      "question": "60) Cuando un mensaje UDP pasa por un router intermedio debe chequear la redundancia, pero no necesita volver a generarla porque no cambia el contenido del mensaje.",
+      "answer": "FALSO, ya que en UDP el único encargado de determinar si algún datagrama se perdió o es incorrecto es el receptor. Los routers intermedios solo rutean los mensajes."
+    },
+    {
+      "question": "61) Cuando se tiene una PC conectada a una red ethernet, alcanza con tener la red default como única entrada en la tabla de ruteo.",
+      "answer": "VERDADERO, si una PC solo tiene una conexión ethernet a una red local y no necesita conectarse con ninguna otra red, no necesita más entradas que la ruta por defecto en la tabla de ruteo."
+    },
+    {
+      "question": "20-IP debe chequear la redundancia y regenerarla (incrementalmente) en cada router intermedio debido al cambio en el valor del campo TTL. ICMP sólo debe chequearla en cada router intermedio, ya que al no variar su contenido, no necesita regenerarla. ",
+      "answer": "Verdadero, como restó 1 al ttl, el encabezamiento IP cambió y por lo tanto debe volver a calcular el checksum (cálculo incremental). En ICMP esto no es necesario. VERDADERO. Esto se hace mediante Checksum IP, controla que el encabezamiento del datagram no contenga errores, se hace en todos los routers intermedios. Si el cálculo es el mismo en todos los routers, significa que no ocurrieron errores. Si ocurrieron errores el ICMP los detectará y notificará acerca de ellos."
+    },
+    {
+      "question": "21-Utilizando el utilitario “ping”, es posible conocer el tiempo de demora de los paquetes en ir de emisor a receptor y volver",
+      "answer": "Verdadero, el ping envía cierta cantidad de paquetes, y nos devuelve el tiempo en ms que tarda un paquete en ir al destino y volver."
+    },
+    {
+      "question": "22-El algoritmo de prefijo más largo (longest prefix match) se aplica a todas las entradas en la tabla de reenvío (excepto a la ruta por defecto). En caso de no encontrar coincidencias, se selecciona la ruta por defecto (si está definida) ",
+      "answer": "Falso, si se aplica el algoritmo a la ruta por defecto. Siempre hace matching con la ruta por defecto Forwarding tables often contain a default route, which has the shortest possible prefix match, to fall back on in case matches with all other entries fail."
+    },
+    {
+      "question": "53) El algoritmo longest prefix match está diseñado para direccionamiento classless, pero es compatible con direccionamiento classful.",
+      "answer": "FALSO, ya que las redes classful poseen una máscara de red fija, por lo tanto el algoritmo no funcionaria (requiere máscaras de red variables)."
+    },
+    {
+      "question": "54) Netfilter define puntos dentro del kernel (hooks) en los cuales se puede introducir código para el tratamiento de los datagrams cuando pasan por el kernel.",
+      "answer": "VERDADERO, netfilter define hooks tales como INPUT, FORWARD, etc, dentro del proceso de red del kernel, en los cuales se puede introducir código de tratamiento de datagramas mediante iptables."
+    },
+    {
+      "question": "56) En WIFI, el caso de estación oculta es cuando una estación se abstiene de transmitir un mensaje porque detecta actividad en el canal.",
+      "answer": "FALSO, la estación oculta es cuando dos dispositivos se encuentran dentro del rango de transmisión del mismo punto de acceso pero fuera del rango directo de señal entre sí."
+    },
+    {
+      "question": "*23-Netfilter está compuesto de Tablas que permiten el tratamiento de los datagrams a través de su paso por el kernel del equipo",
+      "answer": "Falso, netfilter es un framework(conjunto de herramientas que proveen una funcionalidad general para el desarrollo de otros sistemas ) que permite un filtrado de paquetes entrantes o salientes a un equipo mediante cadenas, tablas y reglas. "
+    },
+    {
+      "question": "57) Si durante una transmisión de Circuit Switching se cae un vínculo que se está utilizando en la transmisión, el equipo que lo detecta crea un nuevo circuito para enviar el resto de los paquetes por este nuevo circuito.",
+      "answer": "FALSO, dado que cuando se cae un nodo se debe crear un nuevo circuito, por lo tanto la conexión se interrumpe."
+    },
+    {
+      "question": "24-Las reglas de iptables se agrupan en tablas de acuerdo a su funcionalidad",
+      "answer": "Verdadero. Las tablas indican la funcionalidad que tienen las sentencias dentro de ellas"
+    },
+    {
+      "question": "25-Ethernet usa mecanismo de delimitación de bloque por cuenta de caracteres",
+      "answer": "Falsa, tiene el Preambulo (7 bytes) para que las demas maquinas se den cuenta de que alguien esta transmitiendo por el canal. Y el delimitador de frame (1 byte) es para saber cuando comienza el frame"
+    },
+    {
+      "question": "26-El proceso de auto negociación entre las placas Ethernet, se ejecuta periódicamente dependiendo del intervalo configurado en las placas",
+      "answer": "Pendiente"
+    },
+    {
+      "question": "27-MAC control se aplica entre cualquier par de dispositivos (placas ethernet o switches)",
+      "answer": "Verdadero. MAC control puede aplicarse entre switches, entre placas ethernet o entre una placa y un switch"
+    },
+    {
+      "question": "28-La interferencia entre dos access points muy cercanos, es más perjudicial si ambos acces points están en el canal 6, que si uno de ellos está en el canal 6 y el otro en el canal 7. ",
+      "answer": "Falso, es peor si una se encuentra en el canal 6 y otra en el 7, ya que se producen muchas interferencias. Dos access points en el mismo canal pueden convivir sin problemas, si se configuran a una diferencia de decibeles considerable para que no haya interferencias."
+    },
+    {
+      "question": "*29-En las redes que usan tecnología Packet Switching, cada paquete de datos es almacenado y retransmitido siguiendo el camino (entre nodos) establecido al establecer la conexión",
+      "answer": "Falso, en Packet Switching no se reservan recursos, si se cae un link la red lo soluciona. Cada paquete de datos es almacenado y retransmitido por cada nodo, pero estos nodos no son establecidos al establecer la conexión, sino que el frame va buscando el camino hasta el destino a medida que va avanzando por los nodos."
+    },
+    {
+      "question": "30-En la mayoría de los casos, un ISP asigna a los usuarios una IP publica, pero en otros, asigna una IP privada",
+      "answer": "FALSO. El ISP siempre da direcciones públicas a los usuarios.Esta ip publica Identifica nuestro dispositivo en Internet, por lo que es nuestro proveedor quien nos la asigna, lo que en la mayoría de casos conllevará un cambio periódico de la misma(ip publica dinamica)"
+    },
+    {
+      "question": "32-El proceso de descubrimiento de MTU es realizado por el nivel IP",
+      "answer": "?-Verdadero. Mediante el descubrimiento de MTU, TCP impide que IP fragmente. Genera fragmentos PMTU de 1460 bytes + 20 bytes de encabezamiento y se los manda a IP, que luego agrega los 20 bytes de su encabezamiento a cada uno, completando los 1500 bytes del MTU y se los envía a ethernet-?"
+    },
+    {
+      "question": "33-ARP es usado en redes ethernet, pero no en redes wifi",
+      "answer": "Falso. Se puede utilizar en redes wifi ya que, para los equipos, una placa wifi figura como que es una placa ethernet, lo que permite, entre otras cosas, que se utilice ARP"
+    },
+    {
+      "question": "34-En NAT, la funcion MASQUERADE equivale a SNAT",
+      "answer": "Verdadero. MASQUERADE es lo mismo que SNAT, sólo que es más flexible cuando se cambia la dirección IP. SNAT utiliza la IP pública (estático), mientras que MASQUERADE utiliza la dirección que tiene en ese momento la interfaz de salida al ISP (dinámico)"
+    },
+    {
+      "question": "*35-Utilizando el utilitario “ping”, es posible conocer el tiempo de demora de los paquetes en ir de emisor a receptor y volver",
+      "answer": "Verdadero. El comando ping nos permite, además de saber si hay conectividad entre un emisor y un receptor, saber cuánto tiempo se tarda para enviar un frame entre ellos."
+    },
+    {
+      "question": "47) TCP no utiliza mecanismo de delimitación de bloque.",
+      "answer": "VERDADERO, el protocolo TCP no utiliza mecanismos de delimitación de bloques ya que es un protocolo orientado a flujo. Esto significa que maneja una secuencia continua de bytes sin conocimiento de las unidades lógicas de datos que se transmiten."
+    },
+    {
+      "question": "49) Los utilitarios que monitorean la presencia de redes wifi nos indican la potencia con la cual están transmitiendo los Access Points detectados.",
+      "answer": "FALSO, podemos saber la potencia que recibimos, la cual va a estar afectada por la distancia al AP. En cambio no podemos saber la potencia a la cual se transmite."
+    },
+    {
+      "question": "37) Utilizando el utilitario “ping”, es posible conocer el tiempo de demora de los paquetes en ir de emisor a receptor.",
+      "answer": "FALSO, el comando ‘ping’ brinda la información del tiempo de ida y vuelta del datagram."
+    },
+    {
+      "question": "36-La delimitación de frame por violacion de codigo permite que no se utilice mecanismo de transparencia",
+      "answer": "Verdadero. El método de codificación de bits en señales permite que no se use un mecanismo de transparencia porque no se necesita."
+    },
+    {
+      "question": "*37-La delimitacion de frame por cuenta de caracteres es utilizada por TCP ",
+      "answer": "Falso. La delimitación de frame por cuenta de caracteres se usa en IP."
+    },
+    {
+      "question": "*38-El proceso de autonegociación entre las placas Ethernet, se ejecuta periódicamente dependiendo del intervalo configurado en las placas",
+      "answer": "Verdadero. Sí es dependiendo del intervalo configurado en las placas entonces se realiza una autonegociación periódicamente entre los dispositivos ya que tienen que concordar con que velocidad desean trabajar, también la capacidad y otros detalles."
+    },
+    {
+      "question": "*39-El algoritmo de ruteo implementado por los switches Ethernet, permite determinar el port de salida del frame ethernet en base a su direccion MAC de origen",
+      "answer": "Falso. El algoritmo de ruteo implementado por los switches ethernet (ARP), permite determinar el puerto de salida del frame en base a su dirección MAC de destino, ya que para enviar un frame ethernet debo indicar el puerto de salida, y eso es posible únicamente conociendo la MAC destino que se averigua a partir de la IP destino mediante ARP"
+    },
+    {
+      "question": "40-El control de flujo en Ethernet, permite que un equipo indique a otro adyacente, que deje de enviar informacion por un tiempo determinado",
+      "answer": "Verdadero. El control de flujo evita que un equipo muy rápido sature a uno lento, consiste en avisarle al emisor que envíe más lentamente o que deje de enviar por un tiempo determinado."
+    },
+    {
+      "question": "*41-La interferencia entre dos access points muy cercanos, es mas perjudicial si ambos acces points estan en el canal 6, que si uno de ellos esta en el canal 6 y el otro en el canal 7.",
+      "answer": "FALSO. El canal 6 y 7 se interfieren, por lo que no sería “mejor” poner uno en cada uno, ya que de todas formas habría interferencia alta. Lo recomendable sería cambiar el que está en el 7 al canal 1 o 11 para no tener interferencias. Verdadero, hay más interferencia cuando los AP están en el mismo canal, por eso, si detectan que hay muchos AP en el mismo, se cambiarán de canal para evitar esta congestión."
+    },
+    {
+      "question": "42-En las redes que usan tecnología Packet Switching, cada paquete de datos es almacenado y retransmitido siguiendo el camino (entre nodos) establecido al establecer la conexión",
+      "answer": "FALSO. En packet switching, cada paquete de datos es almacenado y retransmitido por cada nodo, pero estos nodos no son establecidos al establecer la conexión, sino que el frame va buscando el camino hasta el destino a medida que va avanzando por los nodos"
+    },
+    {
+      "question": "43-En la mayoria de los casos, un ISP asigna a los usuarios una IP publica, pero en otros, asigna una IP privada",
+      "answer": "Falso. El ISP siempre direcciones públicas a las intranets de los usuarios."
+    },
+    {
+      "question": "45-El proceso de descubrimiento de MTU es realizado por el nivel IP",
+      "answer": "verdadero. Esta técnica consiste en que el host de origen envía un datagrama del tamaño máximo al host de destino con el bit DF puesto; si el datagrama no puede pasar en algún punto del trayecto el router correspondiente genera un mensaje de error que es devuelto al host emisor; entonces este envía otro datagrama mas pequeño, también con el bit DF a 1 y así sucesivamente, hasta que consigue que algún datagrama pase sin fragmentar al host de destino; tanteando de esta forma consigue averiguar cual es la máxima MTU de la ruta"
+    },
+    {
+      "question": "46-ARP es usado en redes ethernet, pero no en redes wifi",
+      "answer": "Falso. Se puede utilizar en redes wifi ya que, para los equipos, una placa wifi figura como que es una placa ethernet, lo que permite, entre otras cosas, que se utilice ARP."
+    },
+    {
+      "question": "47-En NAT, la funcion MASQUERADE equivale a SNAT",
+      "answer": "Verdadero. Ya que el masquerade oculta la dirección privadas de los hosts y el SNAT cambia la dirección de origen de los paquetes."
+    },
+    {
+      "question": "48-El balanceo de carga que puede hacerse en las redes puede tener como consecuencia que un usuario solo pueda acceder a uno o varios de los servidores (no a todos) ",
+      "answer": "Falso, el balanceo de carga balancea el tráfico para que la red no se sature, pero no se pierde ningún acceso."
+    },
+    {
+      "question": "49-Debido a que el chequeo/generación de redundancia usado por IP requiere dividir en grupos de dos bytes el encabezamiento del datagram, en el caso en este encabezamiento tenga un número impar de bytes, se agrega un cero al final del encabezamiento (solo para los cálculos, no se transmite)",
+      "answer": "VERDADERO. A cantidad impar de bytes, se agrega un byte en cero, es decir 8 bits en cero, que se utilizará para realizar los cálculos únicamente."
+    },
+    {
+      "question": "50-En los frames Ethernet, la dirección MAC de destino se coloca como primer campo del frame (luego del preámbulo) para que sea procesado más eficientemente por ARP",
+      "answer": "Verdadero, de esta manera la placa ethernet podrá saber rápidamente si el paquete es para ella, o tiene que retransmitirlo."
+    },
+    {
+      "question": "51-La interferencia entre dos access points muy cercanos, es más perjudicial si ambos access points están en el canal 6, que si uno de ellos está en el canal 6 y el otro en el canal 7.",
+      "answer": "Falso. El canal 6 y 7 se interfieren, por lo que no sería “mejor” poner uno en cada uno, ya que de todas formas habría interferencia alta. Lo recomendable sería cambiar el que está en el 7 al canal 1 o 11 para no tener interferencias."
+    },
+    {
+      "question": "52-Iptables define puntos dentro del kernel en los cuales se puede introducir codigo para el tratamiento de los datagrams cuando pasan por el kernel",
+      "answer": "Verdadero. Las cadenas indican en qué hook (lugar del kernel) irá cada sentencia (los códigos) dentro del kernel."
+    },
+    {
+      "question": "53-En un mecanismo de parada y espera, la eficiencia máxima que puede obtenerse es inversamente proporcional a la suma de las demoras de propagación de emisor a receptor y de receptor a emisor",
+      "answer": "Verdadero. El sistema de parada y espera es ineficiente de por sí, pero esto se agrava cuanto mayor es el tiempo de propagación entre emisor y receptor."
+    },
+    {
+      "question": "54-Aunque es poco probable que ocurran errores en los frames Ethernet, estos frames erróneos pueden ser analizados utilizando Wireshark, aunque este utilitario no muestre el campo CRC del frame",
+      "answer": "Verdadero, aunque el utilitario no muestre el campo CRC, los frames erróneos pueden ser interceptados y analizados por Wireshark."
+    },
+    {
+      "question": "55-Implementar una VLAN permite extender el alcance físico de una red Ethernet",
+      "answer": "Verdadero. Una de las ventajas de VLAN es que se pueden integrar redes ya instaladas, haciendo una misma red ethernet que cubre más equipos y área. VLAN permite segmentar una LAN en varios dominios de difusión sin necesidad de que los equipos estén juntos físicamente (pueden estar en plantas diferentes de un mismo edificio o incluso en edificios distintos)"
+    },
+    {
+      "question": "56-Las redes de área metropolitana se utilizan en su mayor parte para que los usuarios accedan al ISP. ",
+      "answer": "VERDADERO. Son muy usadas por grandes empresas que abarcan mucho territorio. Generalmente necesitan usar redes privadas virtuales (VPN) para conseguir la privacidad necesaria en el intercambio de datos. Otro uso muy frecuente es para ofrecer conexión web a clientes de grandes proveedores de Internet (ISP)"
+    },
+    {
+      "question": "57-Las conexiones entre los ISP que se encuentran en diferentes continentes se realizan a través de vínculos satelitales.",
+      "answer": "FALSO. Los proveedores utilizan cables submarinos para comunicarse entre continentes, menos del 1% utiliza satélites"
+    },
+    {
+      "question": "58- Los cables submarinos internacionales son propiedad de las naciones que conectan. ",
+      "answer": "FALSO. Los cables submarinos pueden ser propiedad del Estado o de empresas"
+    },
+    {
+      "question": "50) Los cables submarinos para interconexión de los ISP de mayor nivel (tier 1) solo pueden ser propiedad de los países que comunican y no de empresas privadas.",
+      "answer": "FALSO, los cables submarinos de tier 1 suelen pertenecer a grandes empresas privadas de telecomunicaciones."
+    },
+    {
+      "question": "51) Si se produce un error en un datagrama fragmentado, IP lo retransmite con el mismo valor en el campo identificación, para que el destino lo pueda utilizar para el reensamblado, tanto fragmentos de la primera como de la segunda transmisión.",
+      "answer": "FALSO, si uno de los fragmentos tiene errores se descarta todo el datagrama, incluyendo los fragmentos que sí fueron correctamente recibidos. Por otra parte, el valor del campo de identificación no cambia, ya que este valor es único para cada datagrama y modificarlo podría alterar el flujo de la red."
+    },
+    {
+      "question": "59-Una dirección IP classless, permite determinar la red a la que pertenece el equipo, y su identificación de host.",
+      "answer": "FALSO. La longitud del prefijo no está incluida en la dirección IP, por lo que no se puede determinar a qué red pertenece si únicamente se mira la dirección IP."
+    },
+    {
+      "question": "60-Ethernet soporta direcciones multicast, pero actualmente no son utilizadas por IP. ",
+      "answer": "VERDADERO.Las redes multicast se usaban antes, en la actualidad se usan redes unicast, aunque ethernet sigue soportando redes multicast ya que tiene compatibilidad hacia atrás"
+    },
+    {
+      "question": "61-El protocolo TCP realiza el proceso de descubrimiento de MTU. ",
+      "answer": "VERDADERO. Mediante el descubrimiento de MTU, TCP impide que IP fragmente. Genera fragmentos PMTU de 1460 bytes + 20 bytes de encabezamiento y se los manda a IP, que luego agrega los 20 bytes de su encabezamiento a cada uno, completando los 1500 bytes del MTU y se los envía a ethernet"
+    },
+    {
+      "question": "62-En una VLAN, al menos uno de los links debe ser troncal (trunk line).",
+      "answer": "FALSO. Las trunk line son necesarias cuando más de una VLAN opera en modo end-to-end para manejar el tráfico de las diferentes VLAN."
+    },
+    {
+      "question": "63-En fragmentación IP, el campo “offset” contiene la ubicación de los datos del fragmento en el datagram completo. Por ejemplo, offset=0, primer lugar, offset=5, sexto lugar.",
+      "answer": "VERDADERO. El offset indica la posición que ocupa un fragmento para luego realizar el reensamblado"
+    },
+    {
+      "question": "64-El campo TTL (time to live) permite a un router disminuir el tiempo de vida en la red que le resta a un datagram, antes de ser descartado. ",
+      "answer": "VERDADERO. El campo TTL permite que los datagrams no ciclen infinitamente en la red, por ejemplo, si no encuentra el destino, los routers descuentan 1 del ttl cada vez que el datagram pasa por ellos, cuando llega a 0 se descarta."
+    },
+    {
+      "question": "65-El control de errores en IP se basa en generar redundancia en el equipo emisor, y chequear su correctitud en los routers intermedios y en el equipo receptor.",
+      "answer": "VERDADERO. Esto se hace mediante Checksum IP, controla que el encabezamiento del datagram no contenga errores, se hace en todos los routers intermedios. Si el cálculo es el mismo en todos los routers, significa que no ocurrieron errores. Si ocurrieron errores el ICMP los detectará y notificará acerca de ellos."
+    },
+    {
+      "question": "66-El MTU ofrecido por IP, depende de la tecnología utilizada a livel link layer (Ethernet, etc.)",
+      "answer": "VERDADERO. El MTU es la longitud máxima soportada por la subred en función de la tecnología de red por la que vaya a ser enviado el datagrama, por ejemplo, para Ethernet el MTU es de 1500 bytes"
+    },
+    {
+      "question": "52) La IEEE define las normas relativas a la internet (RFC, request for comments).",
+      "answer": "FALSO, las organizaciones encargadas de definir las normas relativas a la internet son la IETF y el ISO."
+    },
+    {
+      "question": "67-Dependiendo de las opciones del datagram IP, un router intermedio puede realizar el reensamblado de los fragmentos IP de un mismo datagram.",
+      "answer": "FALSO. Sólo el host de destino reensambla el datagram original, lo hace en base a los fragmentos recibidos"
+    },
+    {
+      "question": "68-El protocolo ICMP permite chequear la conectividad entre cualquier par de equipos en la Internet.",
+      "answer": "VERDADERO. Las funciones del protocolo ICMP son el chequeo de conectividad, notificar errores producidos por un datagram IP, autoconfiguración de equipos, entre otras"
+    },
+    {
+      "question": "69-Netfilter es un software que incluye funciones que pueden ser invocadas desde la línea de comandos. ",
+      "answer": "VERDADERO. Netfilter es un sistema que permite interceptar y modificar paquetes IP dentro del kernel. Iptables es el utilitario que, desde la línea de comandos, invoca las funciones de netfilter que permiten definir qué se quiere hacer con esos paquetes"
+    },
+    {
+      "question": "70-La capacidad de almacenamiento de un canal (en bits) es inversamente proporcional a la longitud del canal y directamente proporcional a la demora de propagacion del canal y a la velocidad de transmision utilizada.",
+      "answer": "Falso. La capacidad de almacenamiento de un canal depende del tipo de tecnología que se utiliza (la fibra óptica, por ejemplo, tiene gran capacidad de almacenamiento), pero también es inversamente proporcional a la longitud del cable. Pero la demora de propagación y la velocidad de transmisión influyen en la cantidad de datos por unidad de tiempo, no en la cantidad de datos en sí. "
+    },
+    {
+      "question": "71-Debido a que el chequeo/generacion de redundancia usado por UDP requiere dividir en grupos de dos bytes el conjunto de bytes a procesar (chequeo o generacion de redundancia), en el caso en este conjunto de bytes tenga un numero impar de bytes, se agrega un cero al final del mismo (solo para los calculos, no se transmite)",
+      "answer": "Falso. UDP no chequea ni genera redundancia, de eso se encarga IP. UDP no garantiza que la transmisión de la información se haga de manera correcta, pero sí rápida."
+    },
+    {
+      "question": "72-En un equipo que funciona solo como host (no como router) solo es necesario que tenga definida una unica ruta ",
+      "answer": "Falso. Un equipo que funciona sólo como host requiere una ruta por defecto y una para la red local."
+    },
+    {
+      "question": "73-La tabla de reenvio de un router define todas las redes que conoce el router",
+      "answer": "Falso. La tabla de ruteo define las redes que conoce el router, la tabla de reenvío se construye a partir de ella para definir la mejor ruta para la transmisión de datos entre el router y otro equipo."
+    },
+    {
+      "question": "74-Una tabla de Iptables, puede incluir varias cadenas, pero solo las permitidas para esa tabla",
+      "answer": "Verdadero. Ya que las tablas indican las funcionalidades de las sentencias de iptables, las cadenas deben tener reglas correspondientes con las funcionalidades de la tabla."
+    },
+    {
+      "question": "75-En Iptables, cada una de las tablas definidas, puede tener reglas en cualquiera de los hooks definidos por netfilter (INPUT, FORWARD, etc)",
+      "answer": "Falso. La funcionalidad de las cadenas de iptables es indicar en qué lugar de los hooks puedo insertar cierto código. Cada hook indica un lugar específico del kernel en el cual se pueden ubicar sentencias determinadas. (por ejemplo, la tabla filter puede tener reglas en INPUT, OUTPUT o FORWARD, pero no en PREROUTING ni POSTROUTING)"
+    },
+    {
+      "question": "76-La eficiencia en el uso del canal (informacion util enviada por unidad de tiempo) puede ser aumentada por retransmision con permisos al fin de la ventana respecto a la obtenida por parada y espera. Este aumento es inversamente proporcional a la longitud en bytes del frame de ACK",
+      "answer": "Falso. La eficiencia en el uso del canal sí puede ser aumentada por retransmisión con permisos a fin de la ventana, pero el aumento es directamente proporcional al tamaño de la ventana, ya que si el tamaño de la ventana es 1, no varía con respecto a parada y espera, pero a medida que ese número aumenta, también aumenta la eficiencia de la transmisión."
+    },
+    {
+      "question": "77-En redes Wifi, la función de Autenticacion no es necesaria en los casos en que no se configure una clave de acceso en el Access Point",
+      "answer": "Falso. El proceso de autenticación se realiza siempre que una estación quiere conectarse al access point para que el AP pueda identificarla y comprobar que se trata de ella."
+    },
+    {
+      "question": "78-ARP está diseñado sólo para protocolo IP funcionando sobre redes Ethernet o Wifi",
+      "answer": "Falsa.  Para poder enviar un paquete y que este llegue a los protocolos de nivel superior Transporte y Aplicación de la computadora destino, primero debe pasar por la capa de Red y luego por la capa Internet. Para que esto suceda se necesita  básicamente dos cosas A) Dirección MAC  origen y destino (Encabezado de trama) y dirección IP origen y destino (encabezado del paquete)."
+    },
+    {
+      "question": "79-ARP permite a un equipo A, conocer la dirección MAC de otro B al cual A desea enviar un datagram IP. ",
+      "answer": "Verdadero. Para transmitir un paquete por nivel 2 es necesario saber la dirección MAC del equipo B. Para averiguar esto se utiliza el protocolo ARP (address resolution protocol)"
+    },
+    {
+      "question": "80-IP utiliza delimitación de frames por cuenta de caracteres ",
+      "answer": "Falso. Nivel 2(nivel de enlace) utiliza diversas técnicas de delimitación por bloques entre ellas delimitación de frames por cuenta de caracteres"
+    },
+    {
+      "question": "81-Los frames Ethernet que contienen bloques ARP no se someten a las reglas de ruteo de los switches, para que se propaguen a todos los equipos en la red",
+      "answer": "VERDADERO, los frames ethernet con bloques ARP no se someten a las reglas de enrutamiento de los switches, sino que simplemente se reenvían a través de todas las interfaces del switch, ya que deben llegar a todos los equipos de la red. Esto ocurre debido a que ARP y el enrutamiento ocurren en distintas capas del modelo OSI."
+    },
+    {
+      "question": "82-MAC control se aplica entre cualquier par de dispositivos (placas ethernet o switches)",
+      "answer": "Verdadero. MAC control puede aplicarse entre switches, entre placas ethernet o entre una placa y un switch"
+    },
+    {
+      "question": "42) En una red de packet switching, el tiempo que demora un mensaje (M) compuesto de 4 paquetes (P1, P2, P3 y P4) en llegar desde el origen A al destino B, es igual a la suma de los tiempos que tardan cada uno de los paquetes (P1, P2, P3 y P4) en llegar desde el origen A al destino B.",
+      "answer": "FALSO, no se está teniendo en cuenta la demora de propagación de los paquetes."
+    },
+    {
+      "question": "43) La dirección classless IP 10.0.0.5 puede ser interpretada como una dirección broadcast.",
+      "answer": "FALSO, debería ser 00001010.00000000.00000000.00000101/31 para poder tener todos los bits en 1 del host así usar esa dirección como broadcast, lo que no tiene sentido ya que no habría espacio para ningún equipo en esa red al estar también reservado 10.0.0.4."
+    }]
