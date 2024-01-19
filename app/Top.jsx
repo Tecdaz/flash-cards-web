@@ -8,8 +8,8 @@ export default function Top() {
   const { total, asserts } = useContext(GlobalContext);
   return (
     <div className="flex justify-between items-center self-stretch">
-      <Button isIconOnly color="danger">
-        <CancelOutlinedIcon />
+      <Button color="danger" className="text-base">
+        Terminar
       </Button>
 
       <p className="">
