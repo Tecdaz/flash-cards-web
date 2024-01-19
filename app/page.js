@@ -3,6 +3,7 @@ import Top from "@/app/Top";
 import { GlobalContextProvider } from "./context/globalContext";
 import Card from "@/app/Card";
 import { NextUIProvider } from "@nextui-org/react";
+import Registers from "./Registers";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
           </h1>
           <Top />
           <Card />
+          <Registers />
         </div>
       </GlobalContextProvider>
     </NextUIProvider>

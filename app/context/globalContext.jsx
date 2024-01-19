@@ -8,6 +8,11 @@ function GlobalContextProvider({ children }) {
   const [hide, setHide] = useState(true);
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("Posible respuesta");
+  const [registers, setRegisters] = useState([]);
+
+  const addRegister = (register) => {
+    setRegisters([...registers, register]);
+  };
 
   const updateAsserts = () => {
     setAsserts(asserts + 1);
@@ -30,6 +35,8 @@ function GlobalContextProvider({ children }) {
         setQuestion,
         answer,
         setAnswer,
+        registers,
+        addRegister,
       }}
     >
       {children}
