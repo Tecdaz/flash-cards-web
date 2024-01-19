@@ -6,20 +6,19 @@ export default function Card() {
   const {
     question,
     answer,
-    setQuestion,
-    setAnswer,
     hide,
     setHide,
     updateAsserts,
     updateTotal,
+    updateCard,
   } = useContext(GlobalContext);
   return (
-    <div className="flex h-[400px] p-2 flex-col items-center gap-4 flex-shrink-0 self-stretch bg-darkSurface rounded-xl">
+    <div className="flex min-h-96 p-2 flex-col items-center gap-4 flex-shrink-0 self-stretch bg-darkSurface rounded-xl">
       <h2 className="self-stretch text-center font-medium text-lg">
         ¿{question}?
       </h2>
       <p
-        className={`flex flex-col justify-center flex-[1_0_0] self-stretch text-center ${
+        className={`flex flex-col flex-[1_0_0] self-stretch text-center ${
           hide && "blur"
         }`}
       >
@@ -48,6 +47,7 @@ export default function Card() {
               onClick={() => {
                 setHide(true);
                 updateTotal();
+                updateCard();
               }}
             >
               Mal
@@ -59,6 +59,7 @@ export default function Card() {
                 setHide(true);
                 updateTotal();
                 updateAsserts();
+                updateCard();
               }}
             >
               Bien!
