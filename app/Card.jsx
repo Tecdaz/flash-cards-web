@@ -1,7 +1,7 @@
 "use client";
 import React, { useContext } from "react";
 import { GlobalContext } from "@/app/context/globalContext";
-
+import { Button } from "@nextui-org/react";
 export default function Card() {
   const {
     question,
@@ -29,13 +29,40 @@ export default function Card() {
         {hide ? (
           <>
             <div></div>
-            <h1>hola</h1>
+            <Button
+              color="primary"
+              size="lg"
+              onClick={() => {
+                setHide(false);
+              }}
+            >
+              Mostrar respuesta
+            </Button>
             <div></div>
           </>
         ) : (
           <>
-            <p>1</p>
-            <p>2</p>
+            <Button
+              color="danger"
+              size="lg"
+              onClick={() => {
+                setHide(true);
+                updateTotal();
+              }}
+            >
+              Mal
+            </Button>
+            <Button
+              color="success"
+              size="lg"
+              onClick={() => {
+                setHide(true);
+                updateTotal();
+                updateAsserts();
+              }}
+            >
+              Bien!
+            </Button>
           </>
         )}
       </div>
