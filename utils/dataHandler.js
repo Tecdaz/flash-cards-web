@@ -1,5 +1,4 @@
 import data from "./data.json";
-
 let cards = data;
 
 function comparatorRandom() {
@@ -7,7 +6,6 @@ function comparatorRandom() {
 }
 if (cards) {
   cards = cards.sort(comparatorRandom);
-  console.log(cards);
 }
 
 const getCard = () => {
