@@ -1,9 +1,9 @@
 "use client";
 import Top from "@/app/Top";
 import { GlobalContextProvider } from "./context/globalContext";
-import Card from "@/app/Card";
+import Card from "@/app/Components/Card";
 import { NextUIProvider } from "@nextui-org/react";
-import Registers from "./Registers";
+import Registers from "./Components/Registers";
 
 export default function Home() {
   return (
