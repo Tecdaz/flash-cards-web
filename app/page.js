@@ -1,5 +1,5 @@
 "use client";
-import Top from "@/app/Top";
+import Top from "@/app/Components/Top";
 import { GlobalContextProvider } from "./context/globalContext";
 import Card from "@/app/Components/Card";
 import { NextUIProvider } from "@nextui-org/react";
